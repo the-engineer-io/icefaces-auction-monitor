@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Standalone build of the ICEfaces "Auction Monitor" compat sample
+  (source: svn2github/icefaces, samples/compat/auctionMonitor, Apache License 2.0).
+  Versions are properties so build.sh can try several released ICEfaces/Mojarra combinations.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.icefaces.samples</groupId>
+    <artifactId>auctionMonitor</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>ICEfaces Auction Monitor</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <icefaces.version>3.3.0</icefaces.version>
+        <icepush.version>3.3.0</icepush.version>
+        <mojarra.version>2.1.29</mojarra.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-compat</artifactId>
+            <version>${icefaces.version}</version>
+            <exclusions>
+                <exclusion><groupId>javax.el</groupId><artifactId>el-api</artifactId></exclusion>
+                <exclusion><groupId>javax.el</groupId><artifactId>javax.el-api</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId></exclusion>
+                <exclusion><groupId>javax.portlet</groupId><artifactId>portlet-api</artifactId></exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+            <version>${icefaces.version}</version>
+            <exclusions>
+                <exclusion><groupId>org.glassfish</groupId><artifactId>javax.faces</artifactId></exclusion>
+                <exclusion><groupId>javax.el</groupId><artifactId>el-api</artifactId></exclusion>
+                <exclusion><groupId>javax.el</groupId><artifactId>javax.el-api</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId></exclusion>
+                <exclusion><groupId>javax.portlet</groupId><artifactId>portlet-api</artifactId></exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.icepush</groupId>
+            <artifactId>icepush</artifactId>
+            <version>${icepush.version}</version>
+            <exclusions>
+                <exclusion><groupId>javax.servlet.jsp</groupId><artifactId>jsp-api</artifactId></exclusion>
+                <exclusion><groupId>javax.mail</groupId><artifactId>mail</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId></exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>${mojarra.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1</version>
+            <exclusions>
+                <exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion>
+                <exclusion><groupId>logkit</groupId><artifactId>logkit</artifactId></exclusion>
+                <exclusion><groupId>avalon-framework</groupId><artifactId>avalon-framework</artifactId></exclusion>
+                <exclusion><groupId>log4j</groupId><artifactId>log4j</artifactId></exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Provided by Tomcat -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>auctionMonitor</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- The .jspx pages are for the old JSF 1.2 variant; this build serves the .xhtml pages -->
+                    <packagingExcludes>**/*.jspx</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
